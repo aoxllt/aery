@@ -1,9 +1,12 @@
 <template>
   <div>
-    <Index></Index>
+    <h1>Hello from Index!</h1>
   </div>
 </template>
 
 <script setup lang="ts">
-import Index from './views/index.vue';
 </script>
+
+<style scoped>
+
+</style>
