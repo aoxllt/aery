@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eef37a8e-e1a6-48f5-93a9-2e56c19048d2" name="更改" comment="init">
-      <change afterPath="$PROJECT_DIR$/aery-vue/src/components/login_main.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aery-vue/src/views/login.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aery-vue/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/aery-vue/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aery-vue/src/components/HelloWorld.vue" beforeDir="false" afterPath="$PROJECT_DIR$/aery-vue/src/views/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aery-vue/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/aery-vue/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aery-vue/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/aery-vue/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aery-vue/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/aery-vue/src/main.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,28 +53,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "H:/vue/aery/aery-vue/src/views/login.vue",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "node",
-    "nodejs_package_manager_path": "npm",
-    "npm.npm dev.executor": "Run",
-    "settings.editor.selected.configurable": "fileTemplates",
-    "ts.external.directory.path": "H:\\vue\\aery\\aery-vue\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;H:/vue/aery/aery-vue/src/views/login.vue&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.npm dev.executor&quot;: &quot;Run&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;fileTemplates&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;H:\\vue\\aery\\aery-vue\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "vue.recent.templates": [
-      "Vue Composition API Component"
+  &quot;keyToStringList&quot;: {
+    &quot;vue.recent.templates&quot;: [
+      &quot;Vue Composition API Component&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="H:\vue\aery\aery-vue\src\views" />
