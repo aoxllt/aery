@@ -1,20 +1,20 @@
 <template>
   <div class="container">
-    <div class="login_form">
-      <h2>欢迎登录</h2>
+    <div class="register_form">
+      <h2>注册账号</h2>
       <div class="el-input-group">
-        <label>账 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号:</label>
+        <label>账 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号:</label>
         <el-input
-            v-model="login_from.user_name"
+            v-model="register_from.user_name"
             class="input-field"
             placeholder="请输入账号"
             clearable
         />
       </div>
       <div class="el-input-group">
-        <label>密 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码:</label>
+        <label>密 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码:</label>
         <el-input
-            v-model="login_from.password"
+            v-model="register_from.passwd"
             class="input-field"
             type="password"
             placeholder="请输入密码"
@@ -22,21 +22,31 @@
         />
       </div>
       <div class="el-input-group">
+        <label>确认密码:</label>
+        <el-input
+            v-model="register_from.repasswd"
+            class="input-field"
+            type="password"
+            placeholder="再次输入密码"
+            show-password
+        />
+      </div>
+      <div class="el-input-group">
+        <router-view v-model:phone_email="register_from.phone_email"></router-view>
+      </div>
+      <div class="el-input-group">
         <label>验 证 码:</label>
         <el-input
-            v-model="login_from.captcha"
+            v-model="register_from.captcha"
             class="captcha-input"
-            placeholder="验证码"
+            placeholder="请输入验证码"
             clearable
         />
-        <img :src="item" class="captcha-image" alt="Captcha Image" @click="receiveCaptcha" />
-        <router-link to="/forgotpasswd" class="forgot-password">忘记密码</router-link>
+        <button class="btn">重新获取</button>
       </div>
-      <div class="button-container">
-        <button class="login_btn" @click="submit">登录</button>
-        <div class="register">
-          <router-link to="/login/register">没有账号？点击注册</router-link>
-        </div>
+      <button class="register_btn" @click="submit">注册</button>
+      <div class="register">
+        <router-link to="/login">已有账号？点击登录</router-link>
       </div>
     </div>
   </div>
@@ -45,11 +55,17 @@
 <script setup lang="ts">
 import { reactive } from "vue";
 
-const login_from = reactive({
+const register_from = reactive({
   user_name: '',
-  password: '',
+  passwd: '',
+  repasswd: '',
+  phone_email: '',
   captcha: '',
 });
+
+function submit() {
+  console.log(register_from);
+}
 </script>
 
 <style scoped>
@@ -72,8 +88,7 @@ const login_from = reactive({
 h2 {
   color: #1a1a1a;
   font-family: "华文黑体", sans-serif; /* 指定字体，加入后备字体 */
-  margin-bottom: 63px; /* 增加标题底部间距 */
-  margin-top: 35px;
+  margin-bottom: 30px; /* 增加标题底部间距 */
 }
 
 .el-input-group {
@@ -106,7 +121,7 @@ label {
   margin-right: 20px;
 }
 
-.login_btn {
+.register_btn {
   width: 100%; /* 按钮宽度 */
   padding: 12px; /* 增加内边距 */
   background-color: #409eff; /* 按钮背景色 */
@@ -118,26 +133,8 @@ label {
   font-size: 16px; /* 按钮字体大小 */
 }
 
-.login_btn:hover {
-  background-color: #66b1ff; /* 鼠标悬停背景色 */
-}
-
-.forgot-password {
-  font-size: 12px; /* 字体大小 */
-  color: #409eff; /* 颜色 */
-  text-decoration: none; /* 去掉下划线 */
-}
-
-.forgot-password:hover {
-  text-decoration: underline; /* 悬停时显示下划线 */
-}
-
-.button-container {
-  margin-top: 25.5%;
-  display: flex; /* 使用 flexbox */
-  flex-direction: column; /* 垂直排列子元素 */
-  justify-content: flex-end; /* 向下对齐 */
-  margin-bottom: 12px; /* 底部间距 */
+.register_btn:hover {
+  background-color: #66b1ff;  /* 鼠标悬停背景色 */
 }
 
 .register {
@@ -152,5 +149,8 @@ label {
 
 .register a:hover {
   text-decoration: underline; /* 悬停时显示下划线 */
+}
+.btn{
+  font-size: 10px;
 }
 </style>
