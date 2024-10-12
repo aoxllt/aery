@@ -116,10 +116,7 @@ label {
   margin-right: 15px; /* 增加验证码输入框与图片之间的间距 */
 }
 
-.captcha-image {
-  cursor: pointer; /* 鼠标指针效果 */
-  margin-right: 20px;
-}
+
 
 .register_btn {
   width: 100%; /* 按钮宽度 */
