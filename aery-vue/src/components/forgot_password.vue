@@ -1,53 +1,36 @@
 <template>
   <div class="container">
-    <div class="register_form">
-      <h2>注册账号</h2>
+    <div class="forgot_form">
+      <h2>忘记密码</h2>
       <div class="el-input-group">
         <label>账 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号:</label>
         <el-input
-            v-model="register_from.user_name"
+            v-model="forgot.user_name"
             class="input-field"
             placeholder="请输入账号"
             clearable
         />
       </div>
       <div class="el-input-group">
-        <label>密 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码:</label>
+        <label>验 证 器:</label>
         <el-input
-            v-model="register_from.passwd"
+            v-model="forgot.phone_email"
             class="input-field"
-            type="password"
-            placeholder="请输入密码"
-            show-password
+            placeholder="请输入绑定的电话或邮箱"
+            clearable
         />
-      </div>
-      <div class="el-input-group">
-        <label>确认密码:</label>
-        <el-input
-            v-model="register_from.repasswd"
-            class="input-field"
-            type="password"
-            placeholder="再次输入密码"
-            show-password
-        />
-      </div>
-      <div class="el-input-group">
-        <router-view v-model:phone_email="register_from.phone_email"></router-view>
       </div>
       <div class="el-input-group">
         <label>验 证 码:</label>
         <el-input
-            v-model="register_from.captcha"
+            v-model="forgot.captcha"
             class="captcha-input"
             placeholder="请输入验证码"
             clearable
         />
         <button class="btn">重新获取</button>
       </div>
-      <button class="register_btn" @click="submit">注册</button>
-      <div class="register">
-        <router-link to="/login">已有账号？点击登录</router-link>
-      </div>
+      <button class="forgot_btn" @click="submit">提交</button>
     </div>
   </div>
 </template>
@@ -55,16 +38,14 @@
 <script setup lang="ts">
 import { reactive } from "vue";
 
-const register_from = reactive({
-  user_name: '',
-  passwd: '',
-  repasswd: '',
-  phone_email: '',
-  captcha: '',
+const forgot = reactive({
+  user_name: "",
+  phone_email: "",
+  captcha: ""
 });
 
 function submit() {
-  console.log(register_from);
+  console.log(forgot);
 }
 </script>
 
@@ -112,12 +93,11 @@ label {
 
 .captcha-input {
   width: 110px; /* 设置验证码输入框的固定宽度为110px */
-  margin-right: 15px; /* 增加验证码输入框与图片之间的间距 */
+  margin-right: 15px; /* 增加验证码输入框与按钮之间的间距 */
 }
 
-
-
-.register_btn {
+/* 提交按钮 */
+.forgot_btn {
   width: 100%; /* 按钮宽度 */
   padding: 12px; /* 增加内边距 */
   background-color: #409eff; /* 按钮背景色 */
@@ -129,24 +109,23 @@ label {
   font-size: 16px; /* 按钮字体大小 */
 }
 
-.register_btn:hover {
-  background-color: #66b1ff;  /* 鼠标悬停背景色 */
+.forgot_btn:hover {
+  background-color: #66b1ff; /* 鼠标悬停背景色 */
 }
 
-.register {
-  margin-top: 20px; /* 上间距 */
-  text-align: center; /* 文本居中 */
-}
-
-.register a {
-  color: #409eff; /* 注册链接颜色 */
-  text-decoration: none; /* 去掉下划线 */
-}
-
-.register a:hover {
-  text-decoration: underline; /* 悬停时显示下划线 */
-}
-.btn{
+/* 获取验证码按钮 */
+.btn {
   font-size: 10px;
+  background-color: #fff; /* 按钮背景色 */
+  color: #409eff; /* 按钮文字颜色 */
+  border: 1px solid #409eff; /* 按钮边框 */
+  border-radius: 5px; /* 按钮圆角 */
+  cursor: pointer; /* 鼠标指针效果 */
+  padding: 6px 12px; /* 按钮内边距 */
+  transition: background-color 0.3s; /* 背景色过渡效果 */
+}
+
+.btn:hover {
+  background-color: #ecf5ff; /* 鼠标悬停背景色 */
 }
 </style>

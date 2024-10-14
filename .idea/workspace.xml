@@ -4,11 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eef37a8e-e1a6-48f5-93a9-2e56c19048d2" name="更改" comment="init">
+    <list default="true" id="eef37a8e-e1a6-48f5-93a9-2e56c19048d2" name="更改" comment="登录功能基本完成">
+      <change afterPath="$PROJECT_DIR$/aery-vue/src/components/change_password.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aery-vue/src/components/forgot_password.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aery-vue/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/aery-vue/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aery-vue/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/aery-vue/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aery-vue/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/aery-vue/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aery-vue/src/components/login_main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/aery-vue/src/components/login_main.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aery-vue/src/components/register_main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/aery-vue/src/components/register_main.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aery-vue/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/aery-vue/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aery-vue/src/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/aery-vue/src/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aery-vue/src/views/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/aery-vue/src/views/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aery-vue/src/views/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/aery-vue/src/views/login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aery-vue/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/aery-vue/vite.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +24,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="TypeScript File" />
         <option value="Vue Composition API Component" />
       </list>
     </option>
@@ -37,34 +44,39 @@
     &quot;assignee&quot;: &quot;aoxllt&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
+  <component name="GithubPullRequestsUISettings">
+    {
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/aoxllt/aery.git&quot;,
     &quot;accountId&quot;: &quot;48fa2601-0f1c-4e48-b1bb-ffbbcf21cc35&quot;
-  <component name="ChangeListManager">
-    <option name="SHOW_DIALOG" value="false" />
-    <option name="HIGHLIGHT_CONFLICTS" value="true" />
-    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
-    <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/ss/Desktop/untitled2/aery-vue",
-    "settings.editor.selected.configurable": "configurable.group.appearance",
-    "ts.external.directory.path": "D:\\Program Files\\JetBrains\\WebStorm 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external"
+    <component name="ChangeListManager">
+      <option name="SHOW_DIALOG" value="false" />
+      <option name="HIGHLIGHT_CONFLICTS" value="true" />
+      <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+      <option name="LAST_RESOLUTION" value="IGNORE" />
+    </component>
+    <component name="Git.Settings">
+      <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    </component>
+    <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+    <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ss/Desktop/untitled2/aery-vue&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\Program Files\\JetBrains\\WebStorm 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;
   }
-}]]></component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\ss\Desktop\untitled2\aery-vue" />
-    </key>
-  </component>
 }</component>
+    <component name="RecentsManager">
+      <key name="MoveFile.RECENT_KEYS">
+        <recent name="C:\Users\ss\Desktop\untitled2\aery-vue" />
+      </key>
+    </component>
+    }
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 3
@@ -99,6 +111,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="H:\vue\aery\aery-vue\src" />
       <recent name="H:\vue\aery\aery-vue\src\views" />
     </key>
   </component>
@@ -132,6 +145,8 @@
       <workItem from="1728629477234" duration="288000" />
       <workItem from="1728633311650" duration="1673000" />
       <workItem from="1728655033062" duration="497000" />
+      <workItem from="1728698449058" duration="9215000" />
+      <workItem from="1728887588073" duration="4290000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -141,7 +156,31 @@
       <option name="project" value="LOCAL" />
       <updated>1728629646574</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="登录组件完成">
+      <option name="closed" value="true" />
+      <created>1728665270117</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1728665270117</updated>
+    </task>
+    <task id="LOCAL-00003" summary="登录功能基本完成">
+      <option name="closed" value="true" />
+      <created>1728707943573</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1728707943573</updated>
+    </task>
+    <task id="LOCAL-00004" summary="登录功能基本完成">
+      <option name="closed" value="true" />
+      <created>1728707971332</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1728707971332</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,9 +199,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
-    <option name="LAST_COMMIT_MESSAGE" value="init" />
-  </component>
-  <component name="TaskManager">
-    <servers />
+    <MESSAGE value="登录组件完成" />
+    <MESSAGE value="登录功能基本完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="登录功能基本完成" />
   </component>
 </project>

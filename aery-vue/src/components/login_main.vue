@@ -30,7 +30,7 @@
             clearable
         />
         <img :src="item" class="captcha-image" alt="Captcha Image" @click="receiveCaptcha" />
-        <router-link to="/forgotpasswd" class="forgot-password">忘记密码</router-link>
+        <router-link to="/login/forgot" class="forgot-password">忘记密码</router-link>
       </div>
       <div class="button-container">
         <button class="login_btn" @click="submit">登录</button>
@@ -84,7 +84,6 @@ h2 {
 }
 
 label {
-  margin-right: 10px; /* 标签和输入框之间的间距 */
   font-weight: bold; /* 标签加粗 */
   color: #333; /* 标签颜色 */
   flex: 0 0 100px; /* 固定标签宽度为100px */

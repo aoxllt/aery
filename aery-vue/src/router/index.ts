@@ -5,6 +5,8 @@ import login_main from '../components/login_main.vue';
 import register from '../components/register_main.vue'
 import register_phone from '../components/register_phone.vue';
 import register_email from '../components/register_email.vue';
+import forgot from '../components/forgot_password.vue'
+import change_password from '../components/change_password.vue';
 
 const routes = [
     {
@@ -38,6 +40,16 @@ const routes = [
                         component: register_email,
                     }
                 ]
+            },
+            {
+                path: 'forgot',
+                name: 'Forgot',
+                component: forgot,
+            },
+            {
+                path: 'change_password',
+                name: 'ChangePassword',
+                component: change_password,
             }
         ]
     }
