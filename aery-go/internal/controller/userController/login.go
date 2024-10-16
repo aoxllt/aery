@@ -33,7 +33,9 @@ func (c *LoginController) UserLogin(ctx context.Context, req *user.LoginReq) (re
 	if err != nil {
 		// 打印错误信息并返回适当的错误
 		fmt.Println("Error verifying user:", err)
-		return nil, errors.New("用户不存在或信息获取失败")
+		res.Status = false
+		res.Message = "用户不存在或信息获取失败"
+		return res, errors.New("用户不存在或信息获取失败")
 	}
 
 	// 填充响应数据

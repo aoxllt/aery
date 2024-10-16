@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"aery-go/internal/controller/test_c"
 	"aery-go/internal/controller/userController"
 	"context"
 	"github.com/gogf/gf/v2/frame/g"
@@ -17,13 +18,16 @@ var (
 			// 路由分组
 			s.Group("/", func(group *ghttp.RouterGroup) {
 				group.Middleware(ghttp.MiddlewareCORS)
-				
+
 				group.Bind(
 					userController.Login,
 				)
 				group.Bind(
 					userController.Captcha,
+					test_c.Test,
+					userController.Register,
 				)
+
 			})
 			// 设置服务器端口（如果你有特定的端口需求）
 

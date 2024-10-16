@@ -32,7 +32,13 @@
         />
       </div>
       <div class="el-input-group">
-        <router-view v-model:phone_email="register_from.phone_email"></router-view>
+        <label>邮 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱:</label>
+        <el-input
+            v-model="phoneEmail"
+            style="width: 240px"
+            placeholder="请输入邮箱"
+            clearable
+        />
       </div>
       <div class="el-input-group">
         <label>验 证 码:</label>

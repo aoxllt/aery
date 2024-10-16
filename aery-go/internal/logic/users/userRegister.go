@@ -1,9 +1,10 @@
-package test_c
+package users
 
 import (
-	"aery-go/api/test"
+	"aery-go/internal/service"
 	"context"
 	"fmt"
+	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gtime"
 	"github.com/gogf/gf/v2/util/gconv"
 	"net/smtp"
@@ -41,17 +42,32 @@ func sendVerificationCodeEmail(to, code string) error {
 	return err
 }
 
-type TestController struct{}
+func init() {
+	service.RegisterRegister(&UserRegister{})
+}
 
-var Test TestController
+type UserRegister struct{}
 
-func (c *TestController) MysqlTest(ctx context.Context, req *test.TestReq) (res *test.TestRes, err error) {
-	email := req.Email
+func (u UserRegister) UserRegister(ctx context.Context, username string, password string, repassword string, email string, captcha string) (bool, string, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (u UserRegister) GetRegisterCaptcha(ctx context.Context, uuid string, email string) (bool, string, error) {
+	//TODO implement me
 	code := generateVerificationCode()
-	err = sendVerificationCodeEmail(email, code)
-	if err != nil {
-		return
+	err := sendVerificationCodeEmail(email, code)
+	if err != nil && !strings.Contains(err.Error(), "short response: \u0000\u0000\u0000\u001A\u0000\u0000\u0000") {
+		return false, "验证码发送失败", err
 	}
-
-	return
+	//fmt.Println(code)
+	_, err = g.Redis().Do(ctx, "HSET", "RegisterCaptcha:"+uuid, "ans", code)
+	if err != nil {
+		return false, "错误", err
+	}
+	_, err = g.Redis().Do(ctx, "EXPIRE", "RegisterCaptcha:"+uuid, 180)
+	if err != nil {
+		return false, "错误", err
+	}
+	return true, code, nil
 }

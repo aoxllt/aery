@@ -5,7 +5,8 @@ import (
 )
 
 type TestReq struct {
-	g.Meta `path:"/" method:"get" tags:"测试" summary:"数据库测试"`
+	g.Meta `path:"/test" method:"get" tags:"测试" summary:"测试"`
+	Email  string
 }
 type TestRes struct {
 }
