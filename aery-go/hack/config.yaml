@@ -1,0 +1,12 @@
+
+# CLI tool, only in development environment.
+# https://goframe.org/pages/viewpage.action?pageId=3673173
+gfcli:
+  gen:
+    dao:
+      link: "mysql:root:zbq040131@tcp(127.0.0.1:3306)/aery?loc=Local&parseTime=true"
+      tables : "users"
+  docker:
+    build: "-a amd64 -s linux -p temp -ew"
+    tagPrefixes:
+      - my.image.pub/my-app
