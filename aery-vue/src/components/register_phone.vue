@@ -27,10 +27,9 @@ const phoneEmail = computed({
 
 <style scoped>
 label {
-  margin-right: 10px; /* 标签和输入框之间的间距 */
   font-weight: bold; /* 标签加粗 */
   color: #333; /* 标签颜色 */
-  flex: 0 0 100px; /* 固定标签宽度为100px */
+  flex: 0 0 80px; /* 固定标签宽度为100px */
 }
 .email{
   margin-left: 10px;

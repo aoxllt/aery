@@ -7,12 +7,17 @@ import register_phone from '../components/register_phone.vue';
 import register_email from '../components/register_email.vue';
 import forgot from '../components/forgot_password.vue'
 import change_password from '../components/change_password.vue';
-
+import test from '../views/test.vue'
 const routes = [
     {
         path: '/',
         name: 'Home',
         component: index,
+    },
+    {
+        path: '/test',
+        name: 'test',
+        component: test,
     },
     {
         path: '/login',

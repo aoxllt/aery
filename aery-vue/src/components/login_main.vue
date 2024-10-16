@@ -29,7 +29,7 @@
             placeholder="验证码"
             clearable
         />
-        <img :src="item" class="captcha-image" alt="Captcha Image" @click="receiveCaptcha" />
+        <img :src="captchaImg" class="captcha-image" alt="Captcha Image" @click="get_captcha" />
         <router-link to="/login/forgot" class="forgot-password">忘记密码</router-link>
       </div>
       <div class="button-container">
@@ -43,12 +43,47 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from "vue";
+import url from '../config/tsconfig.json'
+import {onMounted, reactive, ref} from "vue";
+import axios from "axios";
 
+const captchaImg = ref('')
 const login_from = reactive({
   user_name: '',
   password: '',
   captcha: '',
+})
+
+
+function get_captcha() {
+  const options = {
+    method:"get",
+    url:url.zurl+"/captcha",
+    withCredentials: true,
+  }
+  axios(options).then(res=>{
+    console.log(res);
+    captchaImg.value = res.data.data['captcha'];
+  })
+}
+
+function submit(){
+  const options = {
+    method: "post",
+    url: url.zurl+"/login",
+    withCredentials: true,
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json; charset=utf-8',
+    },
+    data: login_from,
+  }
+  axios(options).then(res=>{
+      console.log(res)
+  })
+}
+onMounted(() => {
+  get_captcha();
 });
 </script>
 
@@ -86,7 +121,7 @@ h2 {
 label {
   font-weight: bold; /* 标签加粗 */
   color: #333; /* 标签颜色 */
-  flex: 0 0 100px; /* 固定标签宽度为100px */
+  flex: 0 0 80px; /* 固定标签宽度为100px */
 }
 
 .input-field {
@@ -96,13 +131,15 @@ label {
 }
 
 .captcha-input {
-  width: 110px; /* 设置验证码输入框的固定宽度为110px */
-  margin-right: 15px; /* 增加验证码输入框与图片之间的间距 */
+  width: 180px; /* 设置验证码输入框的固定宽度为110px */
+  margin-right: 10px; /* 增加验证码输入框与图片之间的间距 */
 }
 
 .captcha-image {
   cursor: pointer; /* 鼠标指针效果 */
-  margin-right: 20px;
+  margin-right: 5px;
+  width: 120px;
+  height: 40px;
 }
 
 .login_btn {

@@ -5,16 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eef37a8e-e1a6-48f5-93a9-2e56c19048d2" name="更改" comment="登录功能基本完成">
-      <change afterPath="$PROJECT_DIR$/aery-vue/src/components/change_password.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aery-vue/src/components/forgot_password.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/templateLanguages.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aery-go/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aery-go/.idea/aery-go.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aery-go/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aery-go/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aery-go/api/test/test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aery-go/api/user/login.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aery-go/api/user/loginCaptcha.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aery-go/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aery-go/internal/controller/test_c/test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aery-go/internal/controller/userController/login.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aery-go/internal/controller/userController/loginCaptcha.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aery-go/internal/logic/logic.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aery-go/internal/logic/users/userCaptcha.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aery-go/internal/logic/users/userLogin.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aery-go/internal/service/userCaptcha.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aery-go/internal/service/userLogin.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aery-vue/src/views/test.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aery-vue/src/components/login_main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/aery-vue/src/components/login_main.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aery-vue/src/components/register_main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/aery-vue/src/components/register_main.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aery-vue/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/aery-vue/src/router/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aery-vue/src/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/aery-vue/src/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aery-vue/src/views/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/aery-vue/src/views/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aery-vue/src/views/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/aery-vue/src/views/login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aery-vue/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/aery-vue/vite.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,6 +157,7 @@
       <workItem from="1728655033062" duration="497000" />
       <workItem from="1728698449058" duration="9215000" />
       <workItem from="1728887588073" duration="4290000" />
+      <workItem from="1729054838171" duration="1018000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
