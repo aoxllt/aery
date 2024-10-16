@@ -43,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import url from '../config/tsconfig.json'
+import url from '../../config/tsconfig.json'
 import {onMounted, reactive, ref} from "vue";
 import axios from "axios";
 
