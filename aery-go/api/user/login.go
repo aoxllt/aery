@@ -16,6 +16,6 @@ type LoginReq struct {
 
 // LoginRes 定义登录响应的结构
 type LoginRes struct {
-	Status  bool   `json:"status" :"status"`   //状态
-	Message string `json:"message" :"message"` // 提示信息
+	Status  bool   `json:"status" ` //状态
+	Message string `json:"message"` // 提示信息
 }

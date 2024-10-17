@@ -44,11 +44,15 @@
 
 <script setup lang="ts">
 import url from '../../config/tsconfig.json'
-import {onMounted, reactive, ref} from "vue";
+import {onMounted, reactive, ref,h } from "vue";
 import axios from "axios";
+import {ElMessage, ElNotification} from 'element-plus'
+import router from "../../router";
 
 const captchaImg = ref('')
-const login_from = reactive({
+const warnMessage = ref('')
+const errorMessage = ref('')
+let login_from = reactive({
   user_name: '',
   password: '',
   captcha: '',
@@ -68,6 +72,23 @@ function get_captcha() {
 }
 
 function submit(){
+  if (login_from.user_name === '') {
+    open1(); // 显示警告弹窗
+    return;
+  }
+  if (login_from.user_name.length<4) {
+    open4();
+    return;
+  }
+  if (login_from.password === '') {
+    open2();
+    return;
+  }
+
+  if (login_from.password.length < 6) {
+    open3();
+    return;
+  }
   const options = {
     method: "post",
     url: url.zurl+"/login",
@@ -79,9 +100,77 @@ function submit(){
     data: login_from,
   }
   axios(options).then(res=>{
-      console.log(res)
+      console.log(res.data.data);
+      if(res.data.data['status']===true){
+        success()
+        setTimeout(() => {
+          router.push('/');
+        }, 1000)
+      }else if(res.data.data['status']===false){
+        if(res.data.data['message']==="用户名或密码错误"){
+          errorMessage.value = res.data.data['message'];
+          err()
+        }else {
+          warnMessage.value = res.data.data['message'];
+          warning()
+        }
+      }
+    else {
+        errorMessage.value ="错误，请稍后重试"
+        err()
+      }
   })
 }
+
+const success = () => {
+  ElMessage({
+    message: '登录成功',
+    type: 'success',
+    plain: true,
+  })
+}
+const warning= () => {
+  ElMessage({
+    message: warnMessage.value,
+    type: 'warning',
+    plain: true,
+  })
+}
+
+const err = () => {
+  ElMessage({
+    message: '登录失败，'+errorMessage.value,
+    type: 'error',
+    plain: true,
+  })
+}
+
+const open1 = () => {
+  ElNotification({
+    title: '错误，请重新输入',
+    message: h('i', { style: 'color: red' }, '账号不能为空'),
+  });
+}
+const open4 = () => {
+  ElNotification({
+    title: '错误，请重新输入',
+    message: h('i', { style: 'color: red' }, '账号最少为4位'),
+  });
+}
+const open2 = () => {
+  ElNotification({
+    title: '错误，请重新输入',
+    message: h('i', { style: 'color: red' }, '密码不能为空'),
+  });
+}
+
+const open3 = () => {
+  ElNotification({
+    title: '错误，请重新输入',
+    message: h('i', { style: 'color: red' }, '密码必须大于6位'),
+  });
+}
+
 onMounted(() => {
   get_captcha();
 });

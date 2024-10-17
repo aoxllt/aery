@@ -31,12 +31,12 @@ func (s sUser) VerifyUser(ctx context.Context, username string, password string,
 	if err != nil {
 		return false, "用户名或密码错误", err
 	}
-
+	//fmt.Println(uuid)
 	ans, err := g.Redis().Do(ctx, "HGET", "captcha:"+uuid, "ans")
 	if err != nil {
 		return false, "验证码查询出错", err
 	}
-
+	//fmt.Println(ans)
 	if strings.ToLower(captcha) != ans.String() {
 		return false, "验证码错误或者已过期", nil
 	}
