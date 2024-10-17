@@ -1,67 +1,62 @@
 <template>
-  <div
-      class="sidebar"
-      :class="{ 'active': sidebarVisible }"
-      @click="hideSidebar"
-  >
-    <p v-if="sidebarVisible">Sidebar Content</p> <!-- 仅在侧边栏可见时显示文字 -->
-  </div>
-  <div class="content" v-if="!sidebarVisible" @click="showSidebar">
-    <div class="fancy-title">{{ tile }}</div> <!-- 仅在侧边栏不可见时显示文本 -->
+  <div class="container">
+    <!-- 鼠标放置时文字右移，线条动态出现 -->
+    <div class="fancy-title">
+      {{ title }}
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import {ref} from 'vue';
+import { ref } from 'vue';
 
-const tile = ref('Main Content');
-
-const sidebarVisible = ref(false);
-
-// 控制侧边栏的显示
-const showSidebar = () => {
-  sidebarVisible.value = true;
-};
-
-const hideSidebar = () => {
-  sidebarVisible.value = false;
-};
+const title = ref('Hover Over Me');
 </script>
 
 <style scoped>
 
-.fancy-title {
+/* 父容器 */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  height: 100px;
   position: relative;
+  overflow: hidden; /* 隐藏可能出现的滚动条 */
+}
+
+/* 文字部分 */
+.fancy-title {
   font-size: 2rem;
   padding: 20px 30px;
   border-radius: 15px;
   display: inline-block;
-  overflow: hidden; /* 隐藏溢出 */
-  user-select: none; /* 禁止文本选择，隐藏闪烁光标 */
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.5s ease-out; /* 文字移动的过渡效果 */
+  user-select: none; /* 禁止文本选择 */
 }
 
-.sidebar {
-  width: 0; /* 初始宽度为0 */
-  overflow: hidden;
-  transition: width 0.5s ease-out, opacity 0.5s ease-out, box-shadow 0.5s ease; /* 添加减缓效果 */
-  background: #403737; /* 背景设置为黑色 */
-  color: white; /* 文字颜色为白色 */
-  white-space: nowrap; /* 防止换行 */
-  opacity: 0; /* 初始透明度为0 */
-  display: flex; /* 使用 flexbox 居中内容 */
-  align-items: center; /* 垂直居中 */
-  justify-content: center; /* 水平居中 */
-  border-radius: 15px; /* 圆角效果 */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* 添加阴影 */
+/* 文字悬停时右移效果 */
+.fancy-title:hover {
+  transform: translateX(40px); /* 文字右移 */
 }
 
-.sidebar.active {
-  width: 300px; /* 展开时的宽度 */
-  height: 500px; /* 可以根据需要调整 */
-  opacity: 1; /* 展开时透明度为1 */
+/* 伪元素：显示动态出现的竖线 */
+.fancy-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px; /* 线条宽度 */
+  height: 0; /* 初始高度为0 */
+  background-color: #007bff; /* 线条颜色 */
+  transition: height 0.5s ease-out; /* 线条动态增长 */
 }
 
-.content {
-  padding: 20px;
+/* 悬停时线条动态出现 */
+.fancy-title:hover::after {
+  height: 100%; /* 线条从上到下动态出现 */
 }
 </style>

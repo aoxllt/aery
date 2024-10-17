@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import index from '../views/index.vue';
+import index_previous from '../components/index/index_previous.vue';
 import login from '../views/login.vue';
 import login_main from '../components/login/login_main.vue';
 import register from '../components/login/register_main.vue'
@@ -11,7 +12,12 @@ import test from '../views/test.vue'
 const routes = [
     {
         path: '/',
-        name: 'Home',
+        name: 'previous',
+        component: index_previous,
+    },
+    {
+        path: '/index',
+        name: 'index',
         component: index,
     },
     {
