@@ -6,7 +6,6 @@ import (
 
 type TestReq struct {
 	g.Meta `path:"/test" method:"get" tags:"测试" summary:"测试"`
-	Email  string
 }
 type TestRes struct {
 }

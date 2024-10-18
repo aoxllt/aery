@@ -9,7 +9,7 @@
     <el-menu-item index="0">
       <img
           style="width: 100px"
-          src="C:\Users\ss\Desktop\aery\aery-vue\src\assets\vue.svg"
+          src="../../assets/vue.svg"
           alt="Element logo"
       />
     </el-menu-item>

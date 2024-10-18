@@ -15,6 +15,6 @@ type Users struct {
 	UserPasswd   string      `json:"userPasswd"   orm:"user_passwd"    ` //
 	UserRole     string      `json:"userRole"     orm:"user_role"      ` // 0管理员1用户
 	UserStatus   string      `json:"userStatus"   orm:"user_status"    ` // 0正常1被封
-	UserPhone    string      `json:"userPhone"    orm:"user_phone"     ` //
+	UserEmail    string      `json:"userEmail"    orm:"user_email"     ` //
 	NewLoginTime *gtime.Time `json:"newLoginTime" orm:"new_login_time" ` //
 }

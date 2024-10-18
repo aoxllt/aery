@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import index from '../views/index.vue';
-import index_previous from '../components/index/index_previous.vue';
+import index_previous from '../views/index_previous.vue';
 import login from '../views/login.vue';
 import login_main from '../components/login/login_main.vue';
 import register from '../components/login/register_main.vue'

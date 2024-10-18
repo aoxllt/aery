@@ -3,7 +3,7 @@ package user
 import "github.com/gogf/gf/v2/frame/g"
 
 type RegisterReq struct {
-	g.Meta     `path:"/register" methon:"post" tags:"注册" summary:"用户注册"`
+	g.Meta     `path:"/register" method:"post" tags:"注册" summary:"用户注册"`
 	Username   string `json:"username " v:"required#用户名不能为空"`
 	Password   string `json:"password" v:"required#密码不能为空"`
 	Repassword string `json:"repassword" v:"required#确认为空"`

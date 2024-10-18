@@ -7,7 +7,7 @@
           muted
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1;"
       >
-        <source src="C:\Users\ss\Downloads\11490-230853032_medium (1).mp4" type="video/mp4">
+        <source src="" type="video/mp4">
         Your browser does not support the video tag.
       </video>
       <div class="button-container" v-if="showButton">
@@ -26,19 +26,28 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import axios from "axios";
+import URL from "../config/tsconfig.json";
 
 const showButton = ref(false)
 const buttonVisible = ref(false)
 const router = useRouter()
 
 onMounted(() => {
+  axios.get(URL.zurl+"/uuid", { withCredentials: true })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+
   // 在视频开始后延迟3秒显示按钮
   setTimeout(() => {
     showButton.value = true // 显示按钮
     buttonVisible.value = true // 使按钮渐显
   }, 3000); // 延迟3秒
 })
-
 const navigateToOtherPage = () => {
   router.push('/index') // 跳转到其他页面
 }

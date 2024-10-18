@@ -46,12 +46,6 @@ type TestController struct{}
 var Test TestController
 
 func (c *TestController) MysqlTest(ctx context.Context, req *test.TestReq) (res *test.TestRes, err error) {
-	email := req.Email
-	code := generateVerificationCode()
-	err = sendVerificationCodeEmail(email, code)
-	if err != nil {
-		return
-	}
 
 	return
 }

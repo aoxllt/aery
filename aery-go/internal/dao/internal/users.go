@@ -25,7 +25,7 @@ type UsersColumns struct {
 	UserPasswd   string //
 	UserRole     string // 0管理员1用户
 	UserStatus   string // 0正常1被封
-	UserPhone    string //
+	UserEmail    string //
 	NewLoginTime string //
 }
 
@@ -36,7 +36,7 @@ var usersColumns = UsersColumns{
 	UserPasswd:   "user_passwd",
 	UserRole:     "user_role",
 	UserStatus:   "user_status",
-	UserPhone:    "user_phone",
+	UserEmail:    "user_email",
 	NewLoginTime: "new_login_time",
 }
 

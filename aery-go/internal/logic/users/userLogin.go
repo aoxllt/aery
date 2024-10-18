@@ -3,7 +3,8 @@ package users
 import (
 	"aery-go/internal/dao"
 	"aery-go/internal/model/entity"
-	"aery-go/internal/service"
+	"aery-go/internal/service/userService"
+	"aery-go/utility"
 	"context"
 	"github.com/gogf/gf/v2/frame/g"
 	"strings"
@@ -16,7 +17,7 @@ import (
 4.完成方法的逻辑
 */
 func init() {
-	service.RegisterUser(&sUser{})
+	userService.RegisterUser(&sUser{})
 }
 
 type sUser struct{}
@@ -31,7 +32,7 @@ func (s sUser) VerifyUser(ctx context.Context, username string, password string,
 	if err != nil {
 		return false, "用户名或密码错误", err
 	}
-	//fmt.Println(uuid)
+	//fmt.Println(cookie)
 	ans, err := g.Redis().Do(ctx, "HGET", "captcha:"+uuid, "ans")
 	if err != nil {
 		return false, "验证码查询出错", err
@@ -40,7 +41,10 @@ func (s sUser) VerifyUser(ctx context.Context, username string, password string,
 	if strings.ToLower(captcha) != ans.String() {
 		return false, "验证码错误或者已过期", nil
 	}
-
+	user.UserPasswd, err = utility.DecryptAES(user.UserPasswd)
+	if err != nil {
+		return false, "错误", err
+	}
 	// 获取数据库中的密码字段
 	dbPassword := user.UserPasswd
 

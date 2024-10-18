@@ -100,7 +100,7 @@ function submit(){
     data: login_from,
   }
   axios(options).then(res=>{
-      console.log(res.data.data);
+      // console.log(res.data.data);
       if(res.data.data['status']===true){
         success()
         setTimeout(() => {

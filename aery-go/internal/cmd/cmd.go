@@ -1,12 +1,14 @@
 package cmd
 
 import (
+	"aery-go/internal/controller/cookController"
 	"aery-go/internal/controller/test_c"
 	"aery-go/internal/controller/userController"
 	"context"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/os/gcmd"
+	"github.com/gogf/gf/v2/os/gsession"
 )
 
 var (
@@ -15,22 +17,20 @@ var (
 			// 创建一个HTTP服务器实例
 			s := g.Server()
 			s.Use(ghttp.MiddlewareHandlerResponse)
+			s.SetSessionStorage(gsession.NewStorageRedisHashTable(g.Redis()))
 			// 路由分组
 			s.Group("/", func(group *ghttp.RouterGroup) {
 				group.Middleware(ghttp.MiddlewareCORS)
-
 				group.Bind(
 					userController.Login,
-				)
-				group.Bind(
 					userController.Captcha,
 					test_c.Test,
 					userController.Register,
+					cookController.Uuid,
+					userController.CheckUsername,
 				)
 
 			})
-			// 设置服务器端口（如果你有特定的端口需求）
-
 			// 启动服务器
 			s.Run()
 			return nil
