@@ -4,33 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eef37a8e-e1a6-48f5-93a9-2e56c19048d2" name="更改" comment="登录功能基本完成">
-      <change afterPath="$PROJECT_DIR$/.idea/templateLanguages.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aery-go/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aery-go/.idea/aery-go.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aery-go/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aery-go/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aery-go/api/test/test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aery-go/api/user/login.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aery-go/api/user/loginCaptcha.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aery-go/go.mod" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aery-go/internal/controller/test_c/test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aery-go/internal/controller/userController/login.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aery-go/internal/controller/userController/loginCaptcha.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aery-go/internal/logic/logic.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aery-go/internal/logic/users/userCaptcha.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aery-go/internal/logic/users/userLogin.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aery-go/internal/service/userCaptcha.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aery-go/internal/service/userLogin.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aery-vue/src/views/test.vue" afterDir="false" />
+    <list default="true" id="eef37a8e-e1a6-48f5-93a9-2e56c19048d2" name="更改" comment="登录注册前后端全部完成">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aery-vue/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/aery-vue/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aery-go/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/aery-go/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aery-vue/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/aery-vue/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ChangesViewManager" show_ignored="true" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -104,6 +88,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
+    "ignore_missing_gitignore": "true",
     "last_opened_file_path": "H:/vue/aery/aery-vue/src/views/login.vue",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -112,8 +97,8 @@
     "nodejs_interpreter_path": "node",
     "nodejs_package_manager_path": "npm",
     "npm.npm dev.executor": "Run",
-    "settings.editor.selected.configurable": "fileTemplates",
-    "ts.external.directory.path": "C:\\Users\\ss\\Desktop\\aery\\aery-vue\\node_modules\\typescript\\lib",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "H:\\vue\\aery\\aery-vue\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -124,9 +109,9 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="H:\vue\aery\aery-vue\src\views" />
       <recent name="C:\Users\ss\Desktop\untitled2\aery-vue\src\components\login" />
       <recent name="H:\vue\aery\aery-vue\src" />
-      <recent name="H:\vue\aery\aery-vue\src\views" />
     </key>
   </component>
   <component name="RunManager">
@@ -163,6 +148,14 @@
       <workItem from="1728887588073" duration="4290000" />
       <workItem from="1729054838171" duration="1018000" />
       <workItem from="1729077838916" duration="523000" />
+      <workItem from="1729085816872" duration="4685000" />
+      <workItem from="1729131343047" duration="6787000" />
+      <workItem from="1729139416892" duration="377000" />
+      <workItem from="1729141471506" duration="8349000" />
+      <workItem from="1729174067410" duration="2383000" />
+      <workItem from="1729216758318" duration="4766000" />
+      <workItem from="1729231127860" duration="264000" />
+      <workItem from="1729247224727" duration="537000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -196,7 +189,23 @@
       <option name="project" value="LOCAL" />
       <updated>1728707971332</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="登录注册前后端全部完成">
+      <option name="closed" value="true" />
+      <created>1729223060665</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1729223060665</updated>
+    </task>
+    <task id="LOCAL-00006" summary="登录注册前后端全部完成">
+      <option name="closed" value="true" />
+      <created>1729223120709</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1729223120709</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,6 +238,7 @@
     <MESSAGE value="init" />
     <MESSAGE value="登录组件完成" />
     <MESSAGE value="登录功能基本完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="登录功能基本完成" />
+    <MESSAGE value="登录注册前后端全部完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="登录注册前后端全部完成" />
   </component>
 </project>
