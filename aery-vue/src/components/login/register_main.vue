@@ -69,7 +69,7 @@ import url from'../../config/tsconfig.json'
 import {h, reactive, ref, watch} from "vue";
 import {ElMessage, ElNotification} from "element-plus";
 import { debounce } from 'lodash-es';
-import axios, {toString} from "axios";
+import axios from "axios";
 import router from "../../router";
 
 let isCheckingUsername = false;
@@ -195,7 +195,7 @@ function submit() {
 
   if (register_from.email) {
     const input = register_from.email.trim();
-    const emailPattern = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,6}$/;
+    const emailPattern = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,6}$/;
     if (!emailPattern.test(input)){
       open6();
       return;

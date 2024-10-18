@@ -15,7 +15,6 @@
 </template>
 
 <script setup lang="ts">
-import URL from '../config/tsconfig.json'
 
 //引入组件
 import Main from '../components/index/index_main.vue'
