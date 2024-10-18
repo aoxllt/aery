@@ -17,6 +17,6 @@ type Users struct {
 	UserPasswd   interface{} //
 	UserRole     interface{} // 0管理员1用户
 	UserStatus   interface{} // 0正常1被封
-	UserPhone    interface{} //
+	UserEmail    interface{} //
 	NewLoginTime *gtime.Time //
 }

@@ -1,7 +1,7 @@
 package users
 
 import (
-	"aery-go/internal/service"
+	"aery-go/internal/service/userService"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gctx"
 	"github.com/mojocn/base64Captcha"
@@ -11,7 +11,7 @@ import (
 )
 
 func init() {
-	service.RegisterCaptcha(&sCaptcha{})
+	userService.RegisterCaptcha(&sCaptcha{})
 }
 
 type sCaptcha struct {

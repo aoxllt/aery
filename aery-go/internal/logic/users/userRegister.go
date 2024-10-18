@@ -1,7 +1,10 @@
 package users
 
 import (
-	"aery-go/internal/service"
+	"aery-go/internal/dao"
+	"aery-go/internal/model/entity"
+	"aery-go/internal/service/userService"
+	"aery-go/utility"
 	"context"
 	"fmt"
 	"github.com/gogf/gf/v2/frame/g"
@@ -43,17 +46,72 @@ func sendVerificationCodeEmail(to, code string) error {
 }
 
 func init() {
-	service.RegisterRegister(&UserRegister{})
+	userService.RegisterRegister(&UserRegister{})
 }
 
 type UserRegister struct{}
 
 func (u UserRegister) UserRegister(ctx context.Context, username string, password string, repassword string, email string, captcha string) (bool, string, error) {
 	//TODO implement me
-	panic("implement me")
+	if password != repassword {
+		return false, "密码不一致", nil
+	}
+	code, err := g.Redis().Do(ctx, "HGET", "RegisterCaptcha:"+email, "ans")
+	if err != nil {
+		return false, "查询出错", err
+	}
+	if code.String() != captcha {
+		return false, "验证码错误或者已过期", nil
+	}
+	password, err = utility.EncryptAES(password)
+	if err != nil {
+		return false, "错误", err
+	}
+	userDate := &entity.Users{
+		UserName:     username,
+		UserPasswd:   password,
+		UserRole:     "1",
+		UserStatus:   "0",
+		UserEmail:    email,
+		NewLoginTime: gtime.Now(),
+	}
+	result, err := dao.Users.Ctx(ctx).Where("user_name=?", username).One()
+	if err != nil {
+		return false, "错误", err
+	}
+	if !result.IsEmpty() {
+		return false, "用户名已存在", nil
+	}
+	result1, err := dao.Users.Ctx(ctx).Where("user_email=?", email).One()
+	if err != nil {
+		return false, "错误1", err
+	}
+	if !result1.IsEmpty() {
+		return false, "该邮箱已注册", nil
+	}
+	insert, err := dao.Users.Ctx(ctx).Data(userDate).Insert()
+	if err != nil {
+		return false, "注册失败", err
+	}
+	rowsAffected, err := insert.RowsAffected()
+	if err != nil {
+		return false, "获取影响行数失败", err
+	}
+
+	if rowsAffected > 0 {
+		// 插入成功
+		_, err = g.Redis().Do(ctx, "EXPIRE", "RegisterCaptcha:"+email, 0)
+		if err != nil {
+			return false, "错误2", nil
+		}
+		return true, "注册成功", nil
+	} else {
+		// 没有插入任何行
+		return false, "注册失败", err
+	}
 }
 
-func (u UserRegister) GetRegisterCaptcha(ctx context.Context, uuid string, email string) (bool, string, error) {
+func (u UserRegister) GetRegisterCaptcha(ctx context.Context, email string) (bool, string, error) {
 	//TODO implement me
 	code := generateVerificationCode()
 	err := sendVerificationCodeEmail(email, code)
@@ -61,13 +119,13 @@ func (u UserRegister) GetRegisterCaptcha(ctx context.Context, uuid string, email
 		return false, "验证码发送失败", err
 	}
 	//fmt.Println(code)
-	_, err = g.Redis().Do(ctx, "HSET", "RegisterCaptcha:"+uuid, "ans", code)
+	_, err = g.Redis().Do(ctx, "HSET", "RegisterCaptcha:"+email, "ans", code)
 	if err != nil {
 		return false, "错误", err
 	}
-	_, err = g.Redis().Do(ctx, "EXPIRE", "RegisterCaptcha:"+uuid, 180)
+	_, err = g.Redis().Do(ctx, "EXPIRE", "RegisterCaptcha:"+email, 180)
 	if err != nil {
 		return false, "错误", err
 	}
-	return true, code, nil
+	return true, "ok", nil
 }

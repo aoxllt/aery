@@ -1,4 +1,4 @@
-package service
+package userService
 
 type IUserCaptcha interface {
 	Generate(string) (string, error)

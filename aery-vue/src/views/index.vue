@@ -15,15 +15,12 @@
 </template>
 
 <script setup lang="ts">
-import URL from '../config/tsconfig.json'
 
 //引入组件
 import ChatRoom from '../components/room/chat_room.vue'
 import Header from '../components/index/index_header.vue'
 import Aside from '../components/index/index_aside.vue'
 import Footer from '../components/index/index_footer.vue'
-import {onMounted} from "vue";
-import axios from "axios";
 
 </script>
 

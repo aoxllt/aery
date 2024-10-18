@@ -2,7 +2,7 @@ package userController
 
 import (
 	"aery-go/api/user"
-	"aery-go/internal/service"
+	"aery-go/internal/service/userService"
 	"context"
 	"errors"
 	"fmt"
@@ -19,7 +19,7 @@ type LoginController struct{}
 var Login = LoginController{}
 
 func (c *LoginController) loginGetCooike(r *ghttp.Request) string {
-	return r.Cookie.Get("uuid").String()
+	return r.Cookie.Get("cookie").String()
 }
 
 func (c *LoginController) UserLogin(ctx context.Context, req *user.LoginReq) (res *user.LoginRes, err error) {
@@ -29,7 +29,7 @@ func (c *LoginController) UserLogin(ctx context.Context, req *user.LoginReq) (re
 	r := ghttp.RequestFromCtx(ctx)
 	uuid := c.loginGetCooike(r)
 	// 根据用户名和密码验证用户信息
-	outcome, info, err := service.User().VerifyUser(ctx, req.Username, req.Password, req.Captcha, uuid)
+	outcome, info, err := userService.User().VerifyUser(ctx, req.Username, req.Password, req.Captcha, uuid)
 	if err != nil {
 		// 打印错误信息并返回适当的错误
 		fmt.Println("Error verifying user:", err)
@@ -37,7 +37,12 @@ func (c *LoginController) UserLogin(ctx context.Context, req *user.LoginReq) (re
 		res.Message = "用户不存在或信息获取失败"
 		return res, errors.New("用户不存在或信息获取失败")
 	}
-
+	err = r.Session.Set("username", req.Username)
+	if err != nil {
+		res.Status = false
+		res.Message = "用户不存在或信息获取失败"
+		return res, errors.New("session设置失败")
+	}
 	// 填充响应数据
 	res.Status = outcome
 	res.Message = info
