@@ -9,6 +9,7 @@ require (
 	github.com/gogf/gf/contrib/drivers/mysql/v2 v2.7.4
 	github.com/gogf/gf/contrib/nosql/redis/v2 v2.7.4
 	github.com/gogf/gf/v2 v2.7.4
+	github.com/google/uuid v1.6.0
 	github.com/mojocn/base64Captcha v1.3.6
 )
 
@@ -25,7 +26,6 @@ require (
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/go-sql-driver/mysql v1.8.1 // indirect
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
-	github.com/google/uuid v1.6.0 // indirect
 	github.com/gorilla/websocket v1.5.3 // indirect
 	github.com/grokify/html-strip-tags-go v0.1.0 // indirect
 	github.com/magiconair/properties v1.8.7 // indirect

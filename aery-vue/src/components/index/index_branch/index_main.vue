@@ -1,4 +1,5 @@
 <template>
+  <Aside/>
   <el-row class="row-bg">
     <el-col :span="6">我<div class="grid-content ep-bg-purple" /></el-col>
     <el-col :span="6">是<div class="grid-content ep-bg-purple-light" /></el-col>
@@ -29,7 +30,14 @@
     <el-col :span="6"><div class="grid-content ep-bg-purple-light" /></el-col>
     <el-col :span="6"><div class="grid-content ep-bg-purple" /></el-col>
   </el-row>
+  <Footer/>
 </template>
+
+<script setup lang="ts">
+import Aside from "../index_aside.vue"
+import Footer from "../index_footer.vue"
+import Roon from "../../room/chat_room.vue"
+</script>
 
 <style>
 .el-row {

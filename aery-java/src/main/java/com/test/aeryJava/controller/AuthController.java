@@ -1,4 +1,4 @@
-package com.test.aeryjava.controller;
+package com.test.aeryJava.controller;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,34 +22,49 @@ public class AuthController {
 
     @GetMapping("/")
     public ResponseEntity<String> visit(HttpServletRequest request, HttpServletResponse response) {
-        // 检查 request.getCookies() 是否为 null
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
-            // 先检查客户端请求是否携带了 session Cookie
             Optional<Cookie> existingCookie = Arrays.stream(cookies)
                     .filter(cookie -> "uuid".equals(cookie.getName()))
                     .findFirst();
 
             if (existingCookie.isPresent()) {
-                // 如果客户端携带了 session Cookie，验证是否是合法的值
                 String cookieValue = existingCookie.get().getValue();
                 log.info("客户端带有的 uuid Cookie: " + cookieValue);
                 return new ResponseEntity<>("欢迎回来，您的 uuid Cookie 是: " + cookieValue, HttpStatus.OK);
             }
         }
 
-        // 如果客户端没有携带 session Cookie，则为它生成一个新的
         String uuid = UUID.randomUUID().toString();
-
         Cookie sessionCookie = new Cookie("uuid", uuid);
-        sessionCookie.setHttpOnly(true); // 防止 JavaScript 访问 Cookie
-        sessionCookie.setMaxAge(30 * 60); // 设置 Cookie 有效期为 30 分钟
-        sessionCookie.setDomain("10.22.72.209"); // 设置为你的服务器IP
-        sessionCookie.setPath("/"); // 设置路径为根路径
+        sessionCookie.setMaxAge(30 * 60); // 设置有效期
+        sessionCookie.setDomain("10.22.72.209"); // 设置为访问者的域
+        sessionCookie.setPath("/"); // 设置路径
+        sessionCookie.setSecure(false); // 如果使用 HTTPS，请设置为 true
+        sessionCookie.setHttpOnly(true); // 防止 JavaScript 访问
 
         log.info("创建了新的 uuid Cookie: " + uuid);
         response.addCookie(sessionCookie);
 
         return new ResponseEntity<>("欢迎访问，我们为您创建了新的 uuid Cookie: " + uuid, HttpStatus.OK);
+    }
+
+    @GetMapping("/get")
+    public ResponseEntity<String> getCookie(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if ("uuid".equals(cookie.getName())) {
+                    log.info("akfdnoai;jdf;oiAJsfd;oiAJsfpoijassopidfjAPosjda" +
+                            "flkjna水立方就API技术的【AjsfpijaspofdijAPOIdf" +
+                            "aoifjoAIjf[poioAJsd[pojAsdpojapdofjk" +
+                            "oaifjpoiAjsdf[pojapsdfjpajdf[poAjdsf" +
+                            "aOUIfoiajdfpoisjdfposjakpofjAOwerdfr"+cookie.getName()+cookie.getValue());
+                    return new ResponseEntity<>("接收到的 Cookie 值: " + cookie.getValue(), HttpStatus.OK);
+                }
+            }
+        }
+        log.info("没有找到");
+        return new ResponseEntity<>("未找到 Cookie", HttpStatus.NOT_FOUND);
     }
 }

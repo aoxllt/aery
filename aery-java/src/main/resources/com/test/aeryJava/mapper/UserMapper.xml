@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.aeryJava.mapper.UserMapper">
+    <select id="findUserById" resultType="com.test.aeryJava.pojo.UserInfo">
+        SELECT
+            ui.*, u.user_email, u.user_passwd
+        FROM
+            aery.user_info ui
+        JOIN
+            aery.users u ON ui.user_id = u.user_id
+        WHERE
+            ui.user_id = #{id};
+    </select>
+</mapper>

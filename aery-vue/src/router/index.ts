@@ -1,13 +1,19 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import index from '../views/index.vue';
+//login
 import login from '../views/login.vue';
 import login_main from '../components/login/login_main.vue';
 import register from '../components/login/register_main.vue'
 import forgot from '../components/login/forgot_password.vue'
 import change_password from '../components/login/change_password.vue';
 import test from '../views/test.vue'
+//index
+import index from '../views/index.vue';
 import index_main from "../components/index/index_branch/index_main.vue";
 import option1 from "../components/index/index_branch/option1.vue";
+//self
+import self from "../components/index/self/self.vue"
+import info from "../components/index/self/self_branch/self_info.vue"
+import edit from "../components/index/self/self_branch/self_edit.vue"
 
 const routes = [
     {
@@ -22,6 +28,19 @@ const routes = [
             path: 'option1',
             name: 'option1',
             component: option1,
+        },{
+            path: 'self',
+            name: 'self',
+            component: self,
+            children: [{
+                path: '',
+                name: 'info',
+                component: info,
+            },{
+                path: 'edit',
+                name: 'edit',
+                component: edit,
+            }]
         }]
     },
     {

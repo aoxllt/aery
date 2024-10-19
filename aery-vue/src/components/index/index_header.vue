@@ -48,6 +48,9 @@ const handleSelect = (key: string) => {
   else if(key === '2'){
     router.push('option1')
   }
+  else if(key === '3'){
+    router.push('/self')
+  }
   else if (key === '4') {
     router.push('/login') // 跳转到登录页面
   }

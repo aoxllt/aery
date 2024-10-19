@@ -1,4 +1,4 @@
-package com.test.aeryjava;
+package com.test.aeryJava;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

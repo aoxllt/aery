@@ -1,12 +1,8 @@
 <template>
-  <el-container>
-    <el-header><Header/></el-header>
-    <el-aside style="user-select: none;"><Aside/></el-aside>
-    <el-container>
-      <el-aside class="ChatRoom">
-        <ChatRoom/>
-      </el-aside>
-      <el-main><router-view/></el-main>
+  <el-container class="header">
+    <Header/>
+    <el-container class="main-container">
+      <router-view/>
     </el-container>
 
 
@@ -17,12 +13,19 @@
 <script setup lang="ts">
 
 //引入组件
-import ChatRoom from '../components/room/chat_room.vue'
 import Header from '../components/index/index_header.vue'
-import Aside from '../components/index/index_aside.vue'
-import Footer from '../components/index/index_footer.vue'
 
 </script>
 
 <style scoped>
+.main-container {
+  width: 100%;
+}
+.header {
+  height: 60px;
+  width: 100%;
+  background: #dddddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+  transition: box-shadow 0.3s ease; /* 添加过渡效果 */
+}
 </style>/
