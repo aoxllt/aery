@@ -13,6 +13,21 @@ func init() {
 
 type Cookie struct{}
 
+func (c Cookie) GetCookie(ctx context.Context, s string) string {
+	//TODO implement me
+	r := ghttp.RequestFromCtx(ctx)
+	cookie := r.Cookie.Get(s)
+	return cookie.String()
+}
+
+func (c Cookie) SetCookie(ctx context.Context, s string) bool {
+	//TODO implement me
+	cookie := uuid.NewString()
+	r := ghttp.RequestFromCtx(ctx)
+	r.Cookie.Set(s, cookie)
+	return true
+}
+
 func (c Cookie) Getuuid(ctx context.Context) (bool, error) {
 	//TODO implement me
 	r := ghttp.RequestFromCtx(ctx)
@@ -27,23 +42,6 @@ func (c Cookie) Setuuid(ctx context.Context) bool {
 	//TODO implement me
 	setuuid := uuid.NewString()
 	r := ghttp.RequestFromCtx(ctx)
-	//r.AddCookie(&http.Cookie{
-	//	Name:        "uuid",
-	//	Value:       setuuid,
-	//	Quoted:      false,
-	//	Path:        "/",
-	//	Domain:      "10.22.72.216",
-	//	Expires:     time.Time{},
-	//	RawExpires:  "",
-	//	MaxAge:      60,
-	//	Secure:      false,
-	//	HttpOnly:    false,
-	//	SameSite:    0,
-	//	Partitioned: false,
-	//	Raw:         "",
-	//	Unparsed:    nil,
-	//})
-	//r.Cookie.SetCookie("uuid", setuuid, "10.22.72.216", "/", 3600)
 	r.Cookie.Set("uuid", setuuid)
 	return true
 }

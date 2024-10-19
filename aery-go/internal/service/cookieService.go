@@ -5,6 +5,8 @@ import "context"
 type ICookieService interface {
 	Getuuid(ctx context.Context) (bool, error)
 	Setuuid(ctx context.Context) bool
+	SetCookie(context.Context, string) bool
+	GetCookie(context.Context, string) string
 }
 
 var localCookieService ICookieService

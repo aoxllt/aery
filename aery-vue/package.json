@@ -9,8 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@idux/cdk": "^2.5.0",
+    "@idux/components": "^2.5.0",
+    "@idux/pro": "^2.5.0",
+    "ant-design-vue": "^4.2.5",
     "axios": "^1.7.7",
     "element-plus": "^2.8.5",
+    "mitt": "^3.0.1",
     "vue": "^3.5.10",
     "vue-router": "^4.0.13"
   },
