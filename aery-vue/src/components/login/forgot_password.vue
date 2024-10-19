@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <router-link to="/login"><img class="return" src="../../assets/返回.svg" alt="返回"></router-link>
     <div class="forgot_form">
       <h2>忘记密码</h2>
       <div class="el-input-group">
@@ -14,9 +15,9 @@
       <div class="el-input-group">
         <label>验 证 器:</label>
         <el-input
-            v-model="forgot.phone_email"
+            v-model="forgot.email"
             class="input-field"
-            placeholder="请输入绑定的电话或邮箱"
+            placeholder="请输入绑定的邮箱"
             clearable
         />
       </div>
@@ -28,25 +29,140 @@
             placeholder="请输入验证码"
             clearable
         />
-        <button class="btn">重新获取</button>
+        <button class="captcha_btn" :disabled="isButtonDisabled" @click="get_captcha">{{ buttonLabel }}</button>
       </div>
-      <button class="forgot_btn" @click="submit">提交</button>
     </div>
+    <button style="align-items: center" class="forgot_btn" @click="submit">提交</button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { reactive } from "vue";
+import {h, reactive, ref} from "vue";
+import url from "../../config/tsconfig.json";
+import axios from "axios";
+import {ElMessage, ElNotification} from "element-plus";
+import router from "../../router";
 
+const isButtonDisabled = ref(false); // 按钮禁用状态
+const buttonLabel = ref('获取验证码'); // 按钮显示文本
+let countdown = 60; // 倒计时
+const warnMessage = ref('');
+const errorMessage = ref('');
 const forgot = reactive({
   user_name: "",
-  phone_email: "",
+  email: "",
   captcha: ""
 });
 
 function submit() {
-  console.log(forgot);
+  if(forgot.user_name===''){
+    open1();
+    return;
+  }
+  const options={
+    method:"post",
+    url:url.zurl+"/forgotpassword",
+    headers:{
+      'Accept': 'application/json',
+      'Content-Type': 'application/json; charset=utf-8',
+    },
+    withCredentials:true,
+    data:forgot
+  }
+  axios(options).then(res=>{
+    console.log(res);
+    if (res.data.data['status']===true){
+      success();
+      setTimeout(() => {
+        router.push('/login/change?username='+forgot.user_name);
+      }, 1000)
+    }else {
+      warnMessage.value=res.data.data['message'];
+      warning();
+      return;
+    }
+  })
 }
+
+function get_captcha() {
+  const options = {
+    method: "get",
+    url: url.zurl+"/registercaptcha?email="+encodeURIComponent(forgot.email),
+    withCredentials: true,
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json; charset=utf-8',
+    },
+  }
+  axios(options).then(res=>{
+     // console.log(res.data);
+     if(res.data.data==null){
+       errorMessage.value='错误，请输入邮箱';
+       get_err();
+       return
+     }
+    if (res.data.data['status']===false){
+      if(res.data.data['message']==='验证码发送失败'){
+        warnMessage.value=res.data.data['message'];
+        warning();
+      }else {
+        errorMessage.value='错误，请稍后重新尝试获取';
+        get_err();
+      }
+    }else {
+      startCountdown()
+    }
+  })
+}
+
+const get_err = () => {
+  ElMessage({
+    message: errorMessage.value,
+    type: 'error',
+    plain: true,
+  })
+}
+
+const warning= () => {
+  ElMessage({
+    message: warnMessage.value,
+    type: 'warning',
+    plain: true,
+  })
+}
+
+const open1 = () => {
+  ElNotification({
+    title: '错误，请重新输入',
+    message: h('i', { style: 'color: red' }, '账号不能为空'),
+  })
+}
+
+function startCountdown() {
+  isButtonDisabled.value = true;
+  countdown = 60;
+  buttonLabel.value = `${countdown}秒后重新获取`;
+
+  const timer = setInterval(() => {
+    countdown--;
+    if (countdown > 0) {
+      buttonLabel.value = `${countdown}秒后重新获取`;
+    } else {
+      clearInterval(timer);
+      isButtonDisabled.value = false;
+      buttonLabel.value = '重新获取';
+    }
+  }, 1000);
+}
+
+const success = () => {
+  ElMessage({
+    message: '验证成功',
+    type: 'success',
+    plain: true,
+  })
+}
+
 </script>
 
 <style scoped>
@@ -62,8 +178,14 @@ function submit() {
   display: flex; /* 使用 flexbox */
   flex-direction: column; /* 垂直排列子元素 */
   justify-content: center; /* 垂直居中 */
-  align-items: center; /* 水平居中 */
+  align-items: flex-start; /* 使子元素靠左对齐 */
   box-sizing: border-box; /* 包括内边距和边框在内的宽高计算 */
+}
+
+.forgot_form{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* 使子元素靠左对齐 */
 }
 
 h2 {
@@ -92,8 +214,8 @@ label {
 }
 
 .captcha-input {
-  width: 110px; /* 设置验证码输入框的固定宽度为110px */
-  margin-right: 15px; /* 增加验证码输入框与按钮之间的间距 */
+  width: 130px; /* 设置验证码输入框的固定宽度为110px */
+  margin-right: 5px; /* 增加验证码输入框与按钮之间的间距 */
 }
 
 /* 提交按钮 */
@@ -113,19 +235,35 @@ label {
   background-color: #66b1ff; /* 鼠标悬停背景色 */
 }
 
-/* 获取验证码按钮 */
-.btn {
-  font-size: 10px;
-  background-color: #fff; /* 按钮背景色 */
-  color: #409eff; /* 按钮文字颜色 */
-  border: 1px solid #409eff; /* 按钮边框 */
-  border-radius: 5px; /* 按钮圆角 */
-  cursor: pointer; /* 鼠标指针效果 */
-  padding: 6px 12px; /* 按钮内边距 */
-  transition: background-color 0.3s; /* 背景色过渡效果 */
+.return{
+  width: 30px;
+  height: 40px;
+  margin-bottom: 40px;
+
+}
+.captcha_btn {
+  width: 130px;
+  background-color: #409eff; /* 按钮默认背景颜色 */
+  color: white; /* 按钮文字颜色 */
+  border: none; /* 去掉边框 */
+  cursor: pointer; /* 鼠标悬停时显示为手型 */
+  border-radius: 4px; /* 圆角 */
+  padding: 8px;
+  font-size: 12px; /* 字体大小 */
+  transition: background-color 0.3s ease; /* 添加平滑过渡效果 */
 }
 
-.btn:hover {
-  background-color: #ecf5ff; /* 鼠标悬停背景色 */
+.captcha_btn:hover {
+  background-color: #66b1ff; /* 悬停时的背景颜色 */
+}
+
+.captcha_btn:disabled {
+  background-color: #dcdcdc; /* 禁用状态下的背景颜色 */
+  color: #ffffff; /* 禁用状态下的文字颜色 */
+  cursor: not-allowed; /* 禁用时的鼠标指针 */
+}
+
+.captcha_btn:disabled:hover {
+  background-color: #dcdcdc; /* 禁用时悬停颜色保持不变 */
 }
 </style>

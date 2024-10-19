@@ -100,6 +100,11 @@ function get_captcha() {
   }
   axios(options).then(res=>{
     // console.log(res.data.data);
+    if(res.data.data==null){
+      errorMessage.value='错误，请输入邮箱';
+      get_err();
+      return
+    }
     if (res.data.data['status']===false){
       if(res.data.data['message']==='验证码发送失败'){
         warnMessage.value=res.data.data['message'];
@@ -143,20 +148,20 @@ function username_change(){
   };
 
   axios(options).then(res => {
-    console.log(res.data.data['status']);
+    // console.log(res.data.data['status']);
     if (res.data.data['status'] === true) {
       usernameError.value = '该账号已存在，请输入其他账号。';
       isUsernameAvailable.value = false;
-      console.log(usernameError.value); // 打印错误消息
+      // console.log(usernameError.value); // 打印错误消息
     } else {
       usernameError.value = '该账号可用';
       isUsernameAvailable.value = true;
-      console.log(usernameError.value); // 打印可用消息
+      // console.log(usernameError.value); // 打印可用消息
     }
-  }).catch(err => {
+  }).catch(() => {
     usernameError.value = '检查账号时出错，请稍后再试。';
     isUsernameAvailable.value = false;
-    console.error('请求失败:', err.response ? err.response.data : err.message);
+    // console.error('请求失败:', err.response ? err.response.data : err.message);
   }).finally(() => {
     isCheckingUsername = false;
   });

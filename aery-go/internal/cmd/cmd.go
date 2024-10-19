@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"aery-go/internal/controller/cookController"
+	"aery-go/internal/controller/interceptorController"
 	"aery-go/internal/controller/test_c"
 	"aery-go/internal/controller/userController"
 	"context"
@@ -28,6 +29,10 @@ var (
 					userController.Register,
 					cookController.Uuid,
 					userController.CheckUsername,
+					userController.ForgotPassword,
+					interceptorController.ChangePasswordController,
+					userController.ChangePasswordController,
+					cookController.Getcookie,
 				)
 
 			})

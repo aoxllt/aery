@@ -14,22 +14,28 @@ func init() {
 
 }
 
-// EncryptAES 使用 AES 加密数据
 func EncryptAES(plaintext string) (string, error) {
-	// 创建 AES 加密块，key 必须是 16, 24, 或 32 字节长度
-	block, err := aes.NewCipher([]byte(consts.Key))
+	key := []byte(consts.Key)
+
+	// 检查密钥长度是否有效
+	if len(key) != 16 && len(key) != 24 && len(key) != 32 {
+		return "", errors.New("invalid key size: key must be 16, 24, or 32 bytes")
+	}
+
+	// 创建 AES 加密块
+	block, err := aes.NewCipher(key)
 	if err != nil {
 		return "", err
 	}
 
-	// 创建随机的 IV（初始化向量）
+	// 创建随机的 IV（初始化向量），长度为 AES 块大小
 	ciphertext := make([]byte, aes.BlockSize+len(plaintext))
 	iv := ciphertext[:aes.BlockSize]
 	if _, err := io.ReadFull(rand.Reader, iv); err != nil {
 		return "", err
 	}
 
-	// 使用 CFB 模式加密
+	// 使用 CFB 模式加密明文
 	stream := cipher.NewCFBEncrypter(block, iv)
 	stream.XORKeyStream(ciphertext[aes.BlockSize:], []byte(plaintext))
 

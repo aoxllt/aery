@@ -66,7 +66,7 @@ function get_captcha() {
     withCredentials: true,
   }
   axios(options).then(res=>{
-    console.log(res);
+    // console.log(res);
     captchaImg.value = res.data.data['captcha'];
   })
 }
@@ -104,7 +104,7 @@ function submit(){
       if(res.data.data['status']===true){
         success()
         setTimeout(() => {
-          router.push('/');
+          router.push('/index');
         }, 1000)
       }else if(res.data.data['status']===false){
         if(res.data.data['message']==="用户名或密码错误"){

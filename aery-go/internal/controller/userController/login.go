@@ -37,11 +37,30 @@ func (c *LoginController) UserLogin(ctx context.Context, req *user.LoginReq) (re
 		res.Message = "用户不存在或信息获取失败"
 		return res, errors.New("用户不存在或信息获取失败")
 	}
+	// 检查是否已有 session
+	existingSession, err := r.Session.Get("username")
+	if err != nil {
+		res.Status = false
+		res.Message = "获取现有 session 失败"
+		return res, errors.New("获取现有 session 失败")
+	}
+
+	// 如果已有 session，删除它
+	if existingSession != nil {
+		err = r.Session.Remove("username")
+		if err != nil {
+			res.Status = false
+			res.Message = "删除现有 session 失败"
+			return res, errors.New("删除现有 session 失败")
+		}
+	}
+
+	// 创建新的 session
 	err = r.Session.Set("username", req.Username)
 	if err != nil {
 		res.Status = false
-		res.Message = "用户不存在或信息获取失败"
-		return res, errors.New("session设置失败")
+		res.Message = "session 设置失败"
+		return res, errors.New("session 设置失败")
 	}
 	// 填充响应数据
 	res.Status = outcome
