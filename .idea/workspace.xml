@@ -117,6 +117,11 @@
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
+    "GitStage.ChangesTree.GroupingKeys": [
+      "directory",
+      "module",
+      "repository"
+    ],
     "vue.recent.templates": [
       "Vue Composition API Component"
     ]
@@ -162,7 +167,7 @@
       <workItem from="1728698449058" duration="9215000" />
       <workItem from="1728887588073" duration="4290000" />
       <workItem from="1729054838171" duration="1018000" />
-      <workItem from="1729077838916" duration="523000" />
+      <workItem from="1729077838916" duration="10126000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -196,7 +201,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728707971332</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="修改组件路径">
+      <option name="closed" value="true" />
+      <created>1729079358961</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1729079358961</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,6 +242,7 @@
     <MESSAGE value="init" />
     <MESSAGE value="登录组件完成" />
     <MESSAGE value="登录功能基本完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="登录功能基本完成" />
+    <MESSAGE value="修改组件路径" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改组件路径" />
   </component>
 </project>
