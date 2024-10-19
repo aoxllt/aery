@@ -2,7 +2,7 @@
   <div class="profile-page">
     <!-- 顶部封面图片部分 -->
     <div class="cover-container">
-      <img class="cover-image" src="../../../assets/img/mushroom-8313142_1280.jpg" alt="Cover" />
+      <img class="cover-image" src="../../../../assets/img/mushroom-8313142_1280.jpg" alt="Cover" />
       <a-button class="upload-cover-btn">上传封面图片</a-button>
       <span class="ip-status">IP 属地未知</span>
     </div>
@@ -116,7 +116,7 @@ import {onMounted, reactive, ref} from 'vue'
 import { ElDrawer, ElMessageBox } from 'element-plus'
 import { Female, Male , EditPen } from '@element-plus/icons-vue';
 import axios from "axios";
-import url from "../../../config/tsconfig.json"
+import url from "../../../../config/tsconfig.json"
 
 const formLabelWidth = '80px'
 let timer

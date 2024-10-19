@@ -11,9 +11,9 @@ import index from '../views/index.vue';
 import index_main from "../components/index/index_branch/index_main.vue";
 import option1 from "../components/index/index_branch/option1.vue";
 //self
-import self from "../components/index/self/self.vue"
-import info from "../components/index/self/self_branch/self_info.vue"
-import edit from "../components/index/self/self_branch/self_edit.vue"
+import self from "../components/index/index_branch/self/self.vue"
+import info from "../components/index/index_branch/self/self_branch/self_info.vue"
+import edit from "../components/index/index_branch/self/self_branch/self_edit.vue"
 
 const routes = [
     {

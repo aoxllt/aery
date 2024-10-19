@@ -4,8 +4,6 @@
     <el-container class="main-container">
       <router-view/>
     </el-container>
-
-
     <el-footer><Footer/></el-footer>
   </el-container>
 </template>
@@ -14,6 +12,7 @@
 
 //引入组件
 import Header from '../components/index/index_header.vue'
+import Footer from '../components/index/index_footer.vue'
 
 </script>
 
