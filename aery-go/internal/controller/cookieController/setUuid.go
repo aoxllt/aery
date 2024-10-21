@@ -1,4 +1,4 @@
-package cookController
+package cookieController
 
 import (
 	"aery-go/api/cookie"

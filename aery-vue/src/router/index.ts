@@ -6,6 +6,7 @@ import register from '../components/login/register_main.vue'
 import forgot from '../components/login/forgot_password.vue'
 import change_password from '../components/login/change_password.vue';
 import test from '../views/test.vue'
+import upload from "../views/upload.vue";
 //index
 import index from '../views/index.vue';
 import index_main from "../components/index/index_branch/index_main.vue";
@@ -47,6 +48,11 @@ const routes = [
         path: '/test',
         name: 'test',
         component: test,
+    },
+    {
+      path: "/upload",
+      name: 'upload',
+      component: upload,
     },
     {
         path: '/login',

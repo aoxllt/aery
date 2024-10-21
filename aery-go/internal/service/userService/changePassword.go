@@ -1,6 +1,8 @@
 package userService
 
-import "context"
+import (
+	"context"
+)
 
 type IChangePasswordService interface {
 	UpadatePassword(ctx context.Context, password string, username string) (bool, string, error)

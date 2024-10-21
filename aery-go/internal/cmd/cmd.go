@@ -1,9 +1,10 @@
 package cmd
 
 import (
-	"aery-go/internal/controller/cookController"
+	"aery-go/internal/controller/cookieController"
 	"aery-go/internal/controller/interceptorController"
 	"aery-go/internal/controller/test_c"
+	"aery-go/internal/controller/uploadController"
 	"aery-go/internal/controller/userController"
 	"context"
 	"github.com/gogf/gf/v2/frame/g"
@@ -27,12 +28,15 @@ var (
 					userController.Captcha,
 					test_c.Test,
 					userController.Register,
-					cookController.Uuid,
+					cookieController.Uuid,
 					userController.CheckUsername,
 					userController.ForgotPassword,
 					interceptorController.ChangePasswordController,
 					userController.ChangePasswordController,
-					cookController.Getcookie,
+					cookieController.Getcookie,
+					uploadController.FilePath,
+					uploadController.Sts,
+					cookieController.GetSessionValue,
 				)
 
 			})
