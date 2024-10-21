@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@alicloud/sts-sdk": "^1.0.2",
-    "ali-oss": "^6.21.0"
-  }
-}

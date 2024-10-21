@@ -13,12 +13,13 @@
     "@idux/components": "^2.5.0",
     "@idux/pro": "^2.5.0",
     "ant-design-vue": "^4.2.5",
-    "ant-design-vue": "^4.2.5",
     "axios": "^1.7.7",
     "element-plus": "^2.8.5",
     "mitt": "^3.0.1",
     "vue": "^3.5.10",
-    "vue-router": "^4.0.13"
+    "vue-router": "^4.0.13",
+    "@alicloud/sts-sdk": "^1.0.2",
+    "ali-oss": "^6.21.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.1.4",
