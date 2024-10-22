@@ -6,7 +6,7 @@
   </nav>
   <div class="file-explorer">
     <h2 style="color: #1a1a1a; font-family: 'Microsoft Sans Serif', sans-serif;">
-      <strong>我的文件</strong>
+      <strong>个人文件展示</strong>
     </h2>
     <div class="file-tree">
       <ul class="tree-list">
