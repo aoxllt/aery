@@ -18,7 +18,7 @@
     </div>
     <div class="upload-jindu" v-if="uploadProgress > 0" style="color: #1a1a1a">
       <div class="progress-text">
-        <div><STRONG>正在上传：{{ currentFileName }} 上传进度：{{ uploadProgress }}% 速度：{{ uploadSpeed }}</STRONG></div>
+        <div><strong>正在上传：{{ currentFileName }} 上传进度：{{ uploadProgress }}% 速度：{{ uploadSpeed }}</strong></div>
       </div>
       <div class="progress-bar">
         <div class="progress" :style="{ width: uploadProgress + '%' }"></div>
@@ -199,9 +199,11 @@ const uploadFile = async () => {
     success();
   },1000)
     clear();
+    uploadProgress.value=0
   } catch (error) {
     warnMessage.value = '上传失败,请重试';
     warning();
+    uploadProgress.value=0
     clear();
   }
 };
