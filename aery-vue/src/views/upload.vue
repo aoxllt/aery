@@ -1,4 +1,12 @@
 <template>
+  <nav style="display: flex; justify-content: space-between; padding: 10px; background-color: #f0f0f0; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+    <button style="background-color: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">
+      <router-link to="/" style="text-decoration: none; color: white;">返回</router-link>
+    </button>
+    <button style="background-color: #2196F3; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">
+      <router-link to="/showfile" style="text-decoration: none; color: white;">我的文件</router-link>
+    </button>
+  </nav>
   <div class="upload-container">
     <h2 style="color: #1a1a1a;font-family: 'Microsoft Sans Serif',sans-serif"><strong>文件信息预览</strong></h2>
     <div class="file-tree">
@@ -28,12 +36,14 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref} from 'vue';
+import {onMounted, ref} from 'vue';
 import FileNode from '../components/upload/show_files.vue';
 import url from '../config/tsconfig.json'
 import axios from "axios";
 import {initOSSClient, OssuploadFile} from "../utils/oss.ts";
 import {ElMessage} from "element-plus";
+import {getSession} from "../utils/getcookie.ts";
+import router from "../router";
 
 
 interface TreeNode {
@@ -101,7 +111,6 @@ const handleFileSelect = (event: Event) => {
 
 // 处理删除事件
 const handleDelete = (key: string) => {
-  console.log("Deleting key:", key);
 
   const deleteNode = (nodes: TreeNode[]): TreeNode[] => {
     return nodes.map(node => {
@@ -136,9 +145,6 @@ const handleDelete = (key: string) => {
     if (inputElement) {
       inputElement.value = ''; // 清空文件输入框
     }
-
-    // 提示用户可以重新上传文件
-    console.log("树数据为空，请重新上传文件。");
   }
 };
 
@@ -261,12 +267,20 @@ const warning= () => {
 }
 
 onMounted(() => {
-  initOSSClient().then(() => {
-    // 这里可以直接调用下载函数，如果需要自动下载
-    // handleDownload();
-  }).catch((error) => {
-    console.error("Error initializing OSS Client:", error);
-  });
+  getSession().then(res => {
+    if (res.data['value']==='') {
+      warnMessage.value="非法访问，请登录"
+      warning();
+      setTimeout(()=>{
+        router.push('/login')
+      },1000)
+    }else {
+      initOSSClient().then(() => {
+      }).catch((error) => {
+        console.error("Error initializing OSS Client:", error);
+      });
+    }
+  })
 });
 </script>
 <style scoped>
@@ -279,7 +293,7 @@ input[type='file'] {
 }
 
 .file-tree {
-  height: 750px;
+  height: 680px;
   overflow-y: auto;
   border: 1px solid #ccc;
   padding: 10px;

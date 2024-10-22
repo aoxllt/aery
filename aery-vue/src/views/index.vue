@@ -13,17 +13,7 @@
 //引入组件
 import Header from '../components/index/index_header.vue'
 import Footer from '../components/index/index_footer.vue'
-import { updateConfigIpAddress } from "../utils/getLocalip"; // 确保路径正确
-import { onMounted } from "vue";
 
-onMounted(async () => {
-  try {
-    await updateConfigIpAddress(); // 等待更新完成
-    console.log("配置文件已更新");
-  } catch (error) {
-    console.error("更新配置文件时出错:", error);
-  }
-});
 </script>
 
 <style scoped>

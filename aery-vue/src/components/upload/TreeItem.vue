@@ -1,16 +1,17 @@
 <template>
-  <div class="tree-node" style="color: #1a1a1a">
+  <div class="tree-node">
     <div class="node-item">
-     <div class="content">
-       <span class="node-title" @click="toggleChildren">{{ node.title }} ({{ totalSize }} MB)</span>
-       <img class="delete" @click="deleteNode" src="../../assets/删除.svg" alt="删除">
-     </div>
+      <div class="content">
+        <input type="checkbox" v-model="node.checked" @change="updateSelection(node)" />
+        <span class="icon" v-if="node.children && node.children.length">{{ isOpen ? '📂' : '📁' }}</span>
+        <span class="node-title" @click="toggleChildren">{{ node.title }} ({{ totalSize }} MB)</span>
+      </div>
       <div v-if="node.children && node.children.length && isOpen" class="children-list">
-        <show_files
+        <TreeItem
             v-for="child in node.children"
             :key="child.key"
             :node="child"
-            @delete="(key) => emit('delete', key)"
+            @updateSelection="updateSelection"
         />
       </div>
     </div>
@@ -26,6 +27,7 @@ interface TreeNode {
   key: string;
   size?: number; // 文件大小，单位：KB
   children?: TreeNode[];
+  checked?: boolean; // 选中状态
 }
 
 const props = defineProps({
@@ -45,25 +47,29 @@ const totalSize = computed(() => {
     }
   };
   calculateSize(props.node);
-  return (size / 1024/1024).toFixed(2);
+  return (size / 1024 / 1024).toFixed(2);
 });
 
 const toggleChildren = () => {
   isOpen.value = !isOpen.value;
 };
 
-const emit = defineEmits(['delete']);
+const emit = defineEmits(['updateSelection']);
 
-const deleteNode = () => {
-  emit('delete', props.node.key); // 直接使用当前节点的 key
+const updateSelection = (node: TreeNode) => {
+  node.children?.forEach(child => {
+    child.checked = node.checked; // 递归设置子节点的选中状态
+    updateSelection(child); // 递归更新子节点
+  });
+  emit('updateSelection', node); // 通知父组件更新选中状态
 };
 
 </script>
 
-
 <style scoped>
 .tree-node {
   padding-left: 20px;
+  text-align: left;
 }
 
 .node-item {
@@ -82,21 +88,20 @@ const deleteNode = () => {
   cursor: pointer;
   font-weight: bold;
   color: #333;
+  margin-left: 8px; /* 添加左边距以增加间距 */
 }
-
 
 .children-list {
   padding-left: 20px;
 }
+
 .content {
   display: flex;
-  justify-content: space-between; /* 使内容均匀分布 */
   align-items: center; /* 垂直居中对齐 */
 }
 
-.delete {
-  cursor: pointer; /* 鼠标悬停时显示手指 */
-  width: 20px; /* 可以根据需要调整宽度 */
+.icon {
+  margin-right: 8px; /* 图标和文本之间的间距 */
+  font-size: 1.2em; /* 图标大小 */
 }
-
 </style>
