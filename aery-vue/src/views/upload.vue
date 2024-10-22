@@ -63,6 +63,11 @@ const filePaths = ref<string[]>([]);
 const createTreeData = (files: FileList) => {
   const root: { [key: string]: any } = {};
   Array.from(files).forEach((file) => {
+    if (file.size > 500 * 1024 * 1024) { // 500MB
+      warnMessage.value = `文件 ${file.name} 超过500MB限制，无法上传。`;
+      warning();
+      return; // 跳过该文件
+    }
     const pathParts = file.webkitRelativePath.split('/');
     let currentLevel = root;
     pathParts.forEach((part, index) => {
@@ -90,6 +95,7 @@ const createTreeData = (files: FileList) => {
 
   return convertToTree(root);
 };
+
 
 const clear = () => {
   treeData.value = []; // 设置为一个空数组
@@ -162,7 +168,6 @@ const mergeTreeData = (existingNodes: TreeNode[], newNodes: TreeNode[]): TreeNod
 
 const uploadFile = async () => {
   try {
-    // 获取根路径
     const options = {
       method: 'POST',
       url: url.zurl + "/getsession",
@@ -172,28 +177,29 @@ const uploadFile = async () => {
     const res = await axios(options);
     const rootPath = res.data.data.value;
 
-    // 上传文件逻辑
     for (const filePath of filePaths.value) {
       const file = await fetchFileByPath(filePath);
 
       if (file) {
-        currentFileName.value = file.name; // 设置当前文件名
-        const fileUploadPath = `${rootPath}/${filePath}`; // 拼凑完整路径
+        // 再次检查文件大小
+        if (file.size > 500 * 1024 * 1024) {
+          warnMessage.value = `文件 ${file.name} 超过500MB限制，无法上传。`;
+          warning();
+          continue; // 跳过该文件
+        }
 
-        // 记录开始时间和已上传字节数
+        currentFileName.value = file.name;
+        const fileUploadPath = `${rootPath}/${filePath}`;
+
         const startTime = Date.now();
         let uploadedBytes = 0;
 
-        // 上传文件并更新进度
         await OssuploadFile(file, fileUploadPath, (progress) => {
-          uploadProgress.value = progress; // 更新进度
-
-          // 计算已上传字节数
-          uploadedBytes= (progress / 100) * file.size;
-          // 计算网速
-          const elapsedTime = (Date.now() - startTime) / 1000; // 转换为秒
-          const speed = uploadedBytes / elapsedTime; // 字节每秒
-          uploadSpeed.value = (speed / (1024 * 1024)).toFixed(2) + ' MB/s'; // 转换为 MB/s
+          uploadProgress.value = progress;
+          uploadedBytes = (progress / 100) * file.size;
+          const elapsedTime = (Date.now() - startTime) / 1000;
+          const speed = uploadedBytes / elapsedTime;
+          uploadSpeed.value = (speed / (1024 * 1024)).toFixed(2) + ' MB/s';
         });
       } else {
         warnMessage.value = `未找到与路径 ${filePath} 对应的文件`;
@@ -201,15 +207,16 @@ const uploadFile = async () => {
         clear();
       }
     }
-  setTimeout(()=>{
-    success();
-  },1000)
+
+    setTimeout(() => {
+      success();
+    }, 1000);
     clear();
-    uploadProgress.value=0
+    uploadProgress.value = 0;
   } catch (error) {
     warnMessage.value = '上传失败,请重试';
     warning();
-    uploadProgress.value=0
+    uploadProgress.value = 0;
     clear();
   }
 };

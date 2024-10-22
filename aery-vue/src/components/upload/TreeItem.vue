@@ -4,6 +4,7 @@
       <div class="content">
         <input type="checkbox" v-model="node.checked" @change="updateSelection(node)" />
         <span class="icon" v-if="node.children && node.children.length">{{ isOpen ? '📂' : '📁' }}</span>
+        <img v-if="!node.children" :src="getIcon(node.title)" alt="file-icon" style="height: 50px;width: 40px" class="file-icon" />
         <span class="node-title" @click="toggleChildren">{{ node.title }} ({{ totalSize }} MB)</span>
       </div>
       <div v-if="node.children && node.children.length && isOpen" class="children-list">
@@ -49,6 +50,31 @@ const totalSize = computed(() => {
   calculateSize(props.node);
   return (size / 1024 / 1024).toFixed(2);
 });
+
+// 根据文件名获取对应的图标
+const getIcon = (title: string) => {
+  const extension = title.split('.').pop()?.toLowerCase();
+  switch (extension) {
+    case 'pdf':
+      return 'src/assets/Pdf.svg'; // 替换为 PDF 图标路径
+    case 'doc':
+    case 'docx':
+      return 'src/assets/doc.svg'; // 替换为 Word 图标路径
+    case 'xls':
+    case 'xlsx':
+      return 'src/assets/xlsx.svg'; // 替换为 Excel 图标路径
+    case 'ppt':
+    case 'pptx':
+      return 'src/assets/pptx.svg'; // 替换为 PowerPoint 图标路径
+    case 'jpg':
+    case 'jpeg':
+      return 'src/assets/Jpg.svg';
+    case 'png':
+      return 'src/assets/Png.svg';
+    default:
+      return 'src/assets/sysfile.svg'; // 替换为默认图标路径
+  }
+};
 
 const toggleChildren = () => {
   isOpen.value = !isOpen.value;
@@ -103,5 +129,11 @@ const updateSelection = (node: TreeNode) => {
 .icon {
   margin-right: 8px; /* 图标和文本之间的间距 */
   font-size: 1.2em; /* 图标大小 */
+}
+
+.file-icon {
+  width: 16px; /* 图标宽度 */
+  height: 16px; /* 图标高度 */
+  margin-right: 8px; /* 图标和文本之间的间距 */
 }
 </style>

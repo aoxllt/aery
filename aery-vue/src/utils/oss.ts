@@ -108,11 +108,11 @@ export const deleteFile = async (objectName, onProgress) => {
 
     try {
         // 模拟进度条
-        for (let progress = 0; progress <= 100; progress += 20) {
+        for (let progress = 0; progress <= 100; progress += 50) {
             if (onProgress) {
                 onProgress(progress); // 调用进度回调
             }
-            await new Promise(resolve => setTimeout(resolve, 100)); // 模拟延时
+            await new Promise(resolve => setTimeout(resolve, 0)); // 模拟延时
         }
         return await OSSClient.delete(objectName);
     } catch (error) {

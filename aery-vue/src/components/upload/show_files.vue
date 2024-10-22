@@ -2,6 +2,8 @@
   <div class="tree-node" style="color: #1a1a1a">
     <div class="node-item">
      <div class="content">
+       <span class="icon" v-if="node.children && node.children.length">{{ isOpen ? '📂' : '📁' }}</span>
+       <img v-if="!node.children" :src="getIcon(node.title)" alt="file-icon" style="height: 50px;width: 40px" class="file-icon" />
        <span class="node-title" @click="toggleChildren">{{ node.title }} ({{ totalSize }} MB)</span>
        <img class="delete" @click="deleteNode" src="../../assets/删除.svg" alt="删除">
      </div>
@@ -48,6 +50,30 @@ const totalSize = computed(() => {
   return (size / 1024/1024).toFixed(2);
 });
 
+const getIcon = (title: string) => {
+  const extension = title.split('.').pop()?.toLowerCase();
+  switch (extension) {
+    case 'pdf':
+      return 'src/assets/Pdf.svg'; // 替换为 PDF 图标路径
+    case 'doc':
+    case 'docx':
+      return 'src/assets/doc.svg'; // 替换为 Word 图标路径
+    case 'xls':
+    case 'xlsx':
+      return 'src/assets/xlsx.svg'; // 替换为 Excel 图标路径
+    case 'ppt':
+    case 'pptx':
+      return 'src/assets/pptx.svg'; // 替换为 PowerPoint 图标路径
+    case 'jpg':
+    case 'jpeg':
+      return 'src/assets/Jpg.svg';
+    case 'png':
+      return 'src/assets/Png.svg';
+    default:
+      return 'src/assets/sysfile.svg'; // 替换为默认图标路径
+  }
+};
+
 const toggleChildren = () => {
   isOpen.value = !isOpen.value;
 };
@@ -64,6 +90,7 @@ const deleteNode = () => {
 <style scoped>
 .tree-node {
   padding-left: 20px;
+  text-align: left;
 }
 
 .node-item {
@@ -90,7 +117,6 @@ const deleteNode = () => {
 }
 .content {
   display: flex;
-  justify-content: space-between; /* 使内容均匀分布 */
   align-items: center; /* 垂直居中对齐 */
 }
 
@@ -99,4 +125,8 @@ const deleteNode = () => {
   width: 20px; /* 可以根据需要调整宽度 */
 }
 
+.icon {
+  margin-right: 8px; /* 图标和文本之间的间距 */
+  font-size: 1.2em; /* 图标大小 */
+}
 </style>

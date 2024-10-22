@@ -6,7 +6,7 @@
   </nav>
   <div class="file-explorer">
     <h2 style="color: #1a1a1a; font-family: 'Microsoft Sans Serif', sans-serif;">
-      <strong>个人文件展示</strong>
+      <strong>我的文件</strong>
     </h2>
     <div class="file-tree">
       <ul class="tree-list">
@@ -186,6 +186,7 @@ const handleDeleteSelected = async () => {
   deleteProgress.value = 0; // 重置进度
   successMessage.value="文件删除完毕"
   success();
+  await init()
   return
 };
 
@@ -205,7 +206,7 @@ const warning= () => {
   })
 }
 
-onMounted(async () => {
+const init=async ()=>{
   const res = await getSession();
   if (res.data['value'] === '') {
     warnMessage.value = "非法访问，请登录";
@@ -223,6 +224,9 @@ onMounted(async () => {
       console.error("Error fetching files:", error);
     }
   }
+}
+onMounted(async () => {
+ await init();
 });
 
 </script>
